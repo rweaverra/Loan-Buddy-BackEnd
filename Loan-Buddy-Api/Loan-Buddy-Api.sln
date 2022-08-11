@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loan-Buddy-Api", "Loan-Buddy-Api.csproj", "{87A4DB93-4323-4A0E-8F56-6658C2CE6A8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Loan-Buddy-Api", "Loan-Buddy-Api.csproj", "{87A4DB93-4323-4A0E-8F56-6658C2CE6A8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{638FAB94-7F0C-4227-9E94-736E5FC899ED}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

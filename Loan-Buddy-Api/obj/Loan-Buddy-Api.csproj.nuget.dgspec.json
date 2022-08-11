@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rweav\\source\\repos\\Loan-Buddy\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj": {}
+    "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rweav\\source\\repos\\Loan-Buddy\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj": {
+    "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
+        "projectUniqueName": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
         "projectName": "Loan-Buddy-Api",
-        "projectPath": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
+        "projectPath": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
         "packagesPath": "C:\\Users\\rweav\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy\\Loan-Buddy-Api\\obj\\",
+        "outputPath": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rweav\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,15 +40,27 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.4, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[6.0.4, )"
             }
           },
           "imports": [
@@ -57,7 +69,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -69,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
