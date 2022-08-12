@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "37gklB6tYKhTJfh445hKccgOAWzotZa5gIXVPqkiXu0IoXcmYFToKyte5EI0M2RSVP1UWHvXnX/W2A6tw3iZAg==",
+  "dgSpecHash": "8YuLie1QrXqC1znMwDmTXWkX38VoS83Q3dJk5nY7bWNhet3uWxAHK+MtETbyt4WV5dm9Z9baIijdxSIKYFFJ0Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
+  "projectFilePath": "C:\\Users\\rweav\\source\\repos\\GitHub\\Loan-Buddy-BackEnd\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rweav\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\rweav\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

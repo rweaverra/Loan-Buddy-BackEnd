@@ -2495,11 +2495,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
+      "projectUniqueName": "C:\\Users\\rweav\\source\\repos\\GitHub\\Loan-Buddy-BackEnd\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
       "projectName": "Loan-Buddy-Api",
-      "projectPath": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
+      "projectPath": "C:\\Users\\rweav\\source\\repos\\GitHub\\Loan-Buddy-BackEnd\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
       "packagesPath": "C:\\Users\\rweav\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rweav\\source\\repos\\Loan-Buddy(old, has database started)\\Loan-Buddy-Api\\obj\\",
+      "outputPath": "C:\\Users\\rweav\\source\\repos\\GitHub\\Loan-Buddy-BackEnd\\Loan-Buddy-Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rweav\\AppData\\Roaming\\NuGet\\NuGet.Config",
