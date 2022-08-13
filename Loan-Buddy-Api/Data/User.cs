@@ -2,7 +2,7 @@
 
 namespace Loan_Buddy_Api.Data
 {
-    internal sealed class Users
+    public class User
     {
         [Key]
         public int UserId { get; set; }
@@ -16,6 +16,9 @@ namespace Loan_Buddy_Api.Data
 
         [MaxLength(200)]
         public string Password { get; set; } = string.Empty;
+
+        [MaxLength(50)]
+        public string DateCreated { get; set; } = string.Empty;
     }
 
 }

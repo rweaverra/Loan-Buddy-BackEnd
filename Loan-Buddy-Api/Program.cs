@@ -1,4 +1,5 @@
 using Loan_Buddy_Api;
+using Loan_Buddy_Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,10 +30,20 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var ctx = new AppDBContext())
+{
+    var user = new User() { Name = "Bill", Email ="bill@gmail.com", Password = "password" };
+    var loanAgreement = new LoanAgreement()
+    { BorrowerId = 22, DateCreated = "2/2/2022", LenderId = 22, LoanAgreementId = 100, 
+      MonthlyPaymentAmount = 240, OriginalAmount = 24242, RemainingTotal = 2424 };
+
+
+    ctx.Users.Add(user);
+    ctx.LoanAgreements.Add(loanAgreement);
+    ctx.SaveChanges();
+}
 app.UseHttpsRedirection();
 app.MapControllers();
 
-var test = await UsersRepository.GetUsers();
-Console.WriteLine("test" + test);
 
 app.Run();
