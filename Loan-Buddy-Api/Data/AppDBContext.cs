@@ -11,6 +11,7 @@ namespace Loan_Buddy_Api.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<LoanAgreement> LoanAgreements { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
     }
 
 

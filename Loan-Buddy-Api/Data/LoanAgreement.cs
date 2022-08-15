@@ -20,6 +20,5 @@ namespace Loan_Buddy_Api.Data
         public int MonthlyPaymentAmount { get; set; }
         public int RemainingTotal { get; set; }
 
-
     }
 }

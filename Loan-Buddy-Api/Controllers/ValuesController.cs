@@ -9,6 +9,7 @@ namespace Loan_Buddy_Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private AppDBContext db = new AppDBContext();
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -16,18 +17,26 @@ namespace Loan_Buddy_Api.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [Route("GetUsers")]
-        public async Task<IEnumerable<User>> GetUsers()
-        {
-            return await _employeeVMBuilder.GetEmployee();
-        }
+        //[HttpGet("GetLoanAgreements")]
+        //public async Task<IEnumerable<LoanAgreement>> GetLoanAgreements()
+        //{
+        //    return db.LoanAgreements.ToList();
+        //}
 
-        // GET api/<ValuesController>/5
-        [HttpGet("Users")]
-        public string GetUser()
-        { 
-            return "Joe Turner, turn into JSON object eventually";
-        }
+        //[HttpGet("GetUsers")]
+        //public async Task<IEnumerable<User>> GetUsers()
+
+        //{
+        //    return db.Users.ToList();
+
+           
+        //}  
+        //// GET api/<ValuesController>/5
+        //[HttpGet("Users")]
+        //public string GetUser()
+        //{ 
+        //    return "Joe Turner, turn into JSON object eventually";
+        //}
 
     }
 }

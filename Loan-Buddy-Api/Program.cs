@@ -34,12 +34,22 @@ using (var ctx = new AppDBContext())
 {
     var user = new User() { Name = "Bill", Email ="bill@gmail.com", Password = "password" };
     var loanAgreement = new LoanAgreement()
-    { BorrowerId = 22, DateCreated = "2/2/2022", LenderId = 22, LoanAgreementId = 100, 
+    { BorrowerId = 22, DateCreated = "2/2/2022", LenderId = 22, 
       MonthlyPaymentAmount = 240, OriginalAmount = 24242, RemainingTotal = 2424 };
 
-
+    var transaction = new Transaction()
+    {
+        Amount = 55,
+        Date = System.DateTime.Now,
+        LoanAgreementId = 1,
+        PaymentType = "cash",
+        ProofOfPayment = false,
+        RemainingTotal = 2324
+    };
+      
     ctx.Users.Add(user);
     ctx.LoanAgreements.Add(loanAgreement);
+    ctx.Transactions.Add(transaction);
     ctx.SaveChanges();
 }
 app.UseHttpsRedirection();
