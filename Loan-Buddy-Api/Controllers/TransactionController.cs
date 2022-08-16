@@ -1,5 +1,6 @@
 ﻿using Loan_Buddy_Api.Data;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Entity;
 
 namespace Loan_Buddy_Api.Controllers
 {
@@ -7,36 +8,38 @@ namespace Loan_Buddy_Api.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private AppDBContext db = new AppDBContext();
-      
-        [HttpGet()]
+        private readonly AppDBContext _db = new AppDBContext();
+
+
+
+        [HttpGet("{loanId}")]
         public async Task <IEnumerable<Transaction>> GetLoanTransactions(int loanId)
 
         {
-            var query = db.Transactions.Where(r => r.LoanAgreementId == loanId);
+            var query = await _db.Transactions.Where(r => r.LoanAgreementId == loanId).ToListAsync();
 
             return query;      
         }
 
-        [HttpPost()]
+        [HttpPost("{transaction}")]
         public async Task <Transaction> PostTransaction(Transaction transaction)
         {
             transaction.Date = DateTime.Now;
 
             //calculate remaining total by grabbing the loan agreement
-            var loanAmountRemaning = db.LoanAgreements.Where(r => r.LoanAgreementId == transaction.LoanAgreementId)
+            var loanAmountRemaning = _db.LoanAgreements.Where(r => r.LoanAgreementId == transaction.LoanAgreementId)
                 .Select(c => c.RemainingTotal)
                 .FirstOrDefault();
 
            loanAmountRemaning = loanAmountRemaning - transaction.Amount;
 
-           var loanAgreement = db.LoanAgreements.Find(transaction.LoanAgreementId);
+           var loanAgreement = _db.LoanAgreements.Find(transaction.LoanAgreementId);
             loanAgreement.RemainingTotal = loanAmountRemaning;
 
             transaction.RemainingTotal = loanAmountRemaning;
 
-            db.Transactions.Add(transaction);
-            db.SaveChanges();
+            _db.Transactions.Add(transaction);
+            await _db.SaveChangesAsync();
 
             return transaction;
         }

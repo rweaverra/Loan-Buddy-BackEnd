@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Loan_Buddy_Api.Data
 {
@@ -16,5 +17,13 @@ namespace Loan_Buddy_Api.Data
 
         [MaxLength(200)]
         public string Password { get; set; } = string.Empty;
+        
+        //inverse foreign keys.
+
+        [InverseProperty("Borrower")]
+        public ICollection<LoanAgreement> Borowers { get; set; }
+
+        [InverseProperty("Lender")]
+        public ICollection<LoanAgreement> Lenders { get; set; }
     }
 }

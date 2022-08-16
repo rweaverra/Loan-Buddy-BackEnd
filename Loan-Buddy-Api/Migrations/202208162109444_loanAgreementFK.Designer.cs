@@ -7,13 +7,13 @@ namespace Loan_Buddy_Api.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class transaction4 : IMigrationMetadata
+    public sealed partial class loanAgreementFK : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(transaction4));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(loanAgreementFK));
         
         string IMigrationMetadata.Id
         {
-            get { return "202208152013512_transaction4"; }
+            get { return "202208162109444_loanAgreementFK"; }
         }
         
         string IMigrationMetadata.Source

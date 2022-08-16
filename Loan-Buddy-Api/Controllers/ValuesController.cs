@@ -9,7 +9,7 @@ namespace Loan_Buddy_Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private AppDBContext db = new AppDBContext();
+        private AppDBContext _db = new AppDBContext();
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<string> Get()

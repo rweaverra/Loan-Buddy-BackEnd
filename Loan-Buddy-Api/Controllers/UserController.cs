@@ -1,6 +1,7 @@
 ﻿using Loan_Buddy_Api.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Entity;
 
 namespace Loan_Buddy_Api.Controllers
 {
@@ -9,20 +10,20 @@ namespace Loan_Buddy_Api.Controllers
     public class UserController : ControllerBase
 
     {
-        private AppDBContext db = new AppDBContext();
+        private AppDBContext _db = new AppDBContext();
 
         [HttpGet("GetUsers")]
         public async Task<IEnumerable<User>> GetUsers()
 
         {
-            return db.Users.ToList();
+            return await _db.Users.ToListAsync();
         }
 
-        [HttpGet("GetUser")]
+        [HttpGet("{userId}")]
         public async Task<User> GetUser(int userId)
 
         {                     
-            return db.Users.SingleOrDefault(r => r.UserId == userId);
+            return await _db.Users.SingleOrDefaultAsync(r => r.UserId == userId);
         }
 
 

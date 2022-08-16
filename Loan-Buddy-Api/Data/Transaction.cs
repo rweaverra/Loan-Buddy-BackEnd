@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace Loan_Buddy_Api.Data
 {
@@ -13,10 +14,7 @@ namespace Loan_Buddy_Api.Data
     public class Transaction
     {
         [Key]
-        public int TransactionId { get; set; }  
-
-        //Guess I don't exactly need Foreign keys for now
-        public int LoanAgreementId { get; set; }
+        public int TransactionId { get; set; }
 
         public int Amount { get; set; }
 
@@ -29,7 +27,14 @@ namespace Loan_Buddy_Api.Data
         public int RemainingTotal { get; set; }
 
         public bool ProofOfPayment { get; set; }
-        
-       
+
+        //Is the foreign Key, system looks for its name compared to its referenced entities and sees if it
+        //should be a foreign key. I think.
+        public int LoanAgreementId { get; set; }
+
+        //Reference property. It doesn't add any columns it just references this table
+        public LoanAgreement LoanAgreement { get; set; }
+
+
     }
 }
