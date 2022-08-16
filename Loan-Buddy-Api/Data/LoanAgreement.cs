@@ -2,6 +2,7 @@
 
 namespace Loan_Buddy_Api.Data
 {
+
     public class LoanAgreement
     {
         [Key]
@@ -14,11 +15,11 @@ namespace Loan_Buddy_Api.Data
         public int BorrowerId { get; set; }
 
         public int OriginalAmount { get; set; }
-
-        [MaxLength(50)]
-        public string DateCreated { get; set; } = string.Empty;
+        public DateTime DateCreated { get; set; }
         public int MonthlyPaymentAmount { get; set; }
         public int RemainingTotal { get; set; }
+        public bool SignedByBorrower { get; set; } = false;
+        public bool SignedByLender { get; set; } = false;
 
     }
 }

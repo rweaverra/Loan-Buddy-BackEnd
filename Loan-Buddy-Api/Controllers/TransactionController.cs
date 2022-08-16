@@ -39,9 +39,6 @@ namespace Loan_Buddy_Api.Controllers
             db.SaveChanges();
 
             return transaction;
-
-
         }
-
     }
 }

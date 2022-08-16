@@ -34,7 +34,7 @@ using (var ctx = new AppDBContext())
 {
     var user = new User() { Name = "Bill", Email ="bill@gmail.com", Password = "password" };
     var loanAgreement = new LoanAgreement()
-    { BorrowerId = 22, DateCreated = "2/2/2022", LenderId = 22, 
+    { BorrowerId = 1, DateCreated = DateTime.Now, LenderId = 2, 
       MonthlyPaymentAmount = 240, OriginalAmount = 24242, RemainingTotal = 2424 };
 
     var transaction = new Transaction()
@@ -42,7 +42,7 @@ using (var ctx = new AppDBContext())
         Amount = 55,
         Date = System.DateTime.Now,
         LoanAgreementId = 1,
-        PaymentType = "cash",
+        TransactionType = TransactionType.Cash.ToString(),
         ProofOfPayment = false,
         RemainingTotal = 2324
     };

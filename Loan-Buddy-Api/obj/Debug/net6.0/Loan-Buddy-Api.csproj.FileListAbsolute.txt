@@ -251,3 +251,6 @@ C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\obj\Debug\n
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\obj\Debug\net6.0\Loan-Buddy-Api.csproj.GenerateResource.cache
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\obj\Debug\net6.0\Loan_Buddy_Api.Migrations.transaction2.resources
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\obj\Debug\net6.0\Loan_Buddy_Api.Migrations.transaction3.resources
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\obj\Debug\net6.0\Loan_Buddy_Api.Migrations.transaction4.resources
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\obj\Debug\net6.0\Loan_Buddy_Api.Migrations.transaction5.resources
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\obj\Debug\net6.0\Loan_Buddy_Api.Migrations.transaction51.resources

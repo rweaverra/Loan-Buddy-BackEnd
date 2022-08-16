@@ -3,6 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Loan_Buddy_Api.Data
 {
+    public enum TransactionType
+    {
+        Cash,
+        Check,
+        BankWire,
+        ThirdPartyApp
+    }
     public class Transaction
     {
         [Key]
@@ -15,7 +22,7 @@ namespace Loan_Buddy_Api.Data
 
         //Change payment type to foreign key
         [MaxLength(200)]
-        public string PaymentType { get; set; } = string.Empty;
+        public string TransactionType { get; set; }
 
         public DateTime Date { get; set; }
 
