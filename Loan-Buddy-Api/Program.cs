@@ -30,28 +30,32 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-using (var ctx = new AppDBContext())
-{
-    var user = new User() { Name = "Bill", Email ="bill@gmail.com", Password = "password" };
-    var loanAgreement = new LoanAgreement()
-    { BorrowerId = 1, DateCreated = DateTime.Now, LenderId = 2, 
-      MonthlyPaymentAmount = 240, OriginalAmount = 24242, RemainingTotal = 2424 };
+//using (var ctx = new AppDBContext())
+//{
+//    var user = new User() { Name = "Bill", Email ="bill@gmail.com", Password = "password" };
+//    var user2 = new User() { Name = "Janet", Email = "Janet@gmail.com", Password = "password" };
+//    var loanAgreement = new LoanAgreement()
+//    { BorrowerId = 1, DateCreated = DateTime.Now, LenderId = 2, 
+//      MonthlyPaymentAmount = 240, OriginalAmount = 24242, RemainingTotal = 2424 };
 
-    var transaction = new Transaction()
-    {
-        Amount = 55,
-        Date = System.DateTime.Now,
-        LoanAgreementId = 1,
-        TransactionType = TransactionType.Cash.ToString(),
-        ProofOfPayment = false,
-        RemainingTotal = 2324
-    };
+//    var transaction = new Transaction()
+//    {
+//        Amount = 55,
+//        Date = System.DateTime.Now,
+//        LoanAgreementId = 1,
+//        TransactionType = TransactionType.Cash.ToString(),
+//        ProofOfPayment = false,
+//        RemainingTotal = 2324
+//    };
       
-    ctx.Users.Add(user);
-    ctx.LoanAgreements.Add(loanAgreement);
-    ctx.Transactions.Add(transaction);
-    ctx.SaveChanges();
-}
+//    ctx.Users.Add(user);
+//    ctx.Users.Add(user2);
+//    ctx.SaveChangesAsync();
+//    ctx.LoanAgreements.Add(loanAgreement);
+//    ctx.SaveChangesAsync();
+//    ctx.Transactions.Add(transaction);
+//    ctx.SaveChangesAsync();
+//}
 app.UseHttpsRedirection();
 app.MapControllers();
 

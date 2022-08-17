@@ -1,6 +1,6 @@
 ﻿using Loan_Buddy_Api.Data;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Loan_Buddy_Api.Controllers
 {
@@ -27,26 +27,45 @@ namespace Loan_Buddy_Api.Controllers
             return results;
         }
 
-        //get user info, specific loan info and transactions
-        [HttpGet()]
-        public async Task<ActionResult<Dictionary<string, object>>> GetLoanAgreementById(int loanId)
+       //Could really optimize the search, could also look into the foreign key stuff.
+        [HttpGet("getAllLoanInfo/{loanId}/{userId}")]
+        public async Task<ActionResult<Dictionary<string, object>>> GetAllLoanInfoWithLoanId(int loanId, int userId)
         {
-            try
-            {
+            
             var results = new Dictionary<string, object>();
-                //inner join all of it, or three separate calls?
-            return Ok(results);
 
-            }
-            catch(Exception ex)
+
+            LoanAgreement? loanAgreement = await _db.LoanAgreements.Where(r => r.LoanAgreementId == loanId).SingleOrDefaultAsync();
+
+            if (loanAgreement == null)
+                return BadRequest("no Loan Agreement with that Id");
+            
+            int? lenderId = loanAgreement.LenderId;
+            int? borrowerId = loanAgreement.BorrowerId;
+
+            dynamic? loanCoSigner = null;
+            if(userId == lenderId)
             {
-                return BadRequest("unable to grab Loan Agreement based on User Id" + ex);
+                loanCoSigner = await _db.Users.Where(u => u.UserId == borrowerId).SingleOrDefaultAsync();
+            }
+            else if (userId == borrowerId)
+            {
+                loanCoSigner = await _db.Users.Where(u => u.UserId == lenderId).SingleOrDefaultAsync();
             }
 
-            //grab user info
-            //grab loan agreement info
-            //grab transactions info
+            var transactions = await _db.Transactions.Where(r => r.LoanAgreementId == loanId).ToListAsync();
+            var userInfo = await _db.Users.SingleAsync(r => r.UserId == userId);
 
+
+
+            results.Add("loanAgreement", loanAgreement);
+            results.Add("transactions", transactions);
+            results.Add("userInfo", userInfo);
+
+            if(loanCoSigner is not null)
+              results.Add("loanCoSigner", loanCoSigner);
+               
+                return Ok(results);     
         }
 
         [HttpPost("{loanAgreement}")]

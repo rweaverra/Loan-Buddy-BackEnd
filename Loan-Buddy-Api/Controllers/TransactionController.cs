@@ -1,6 +1,6 @@
 ﻿using Loan_Buddy_Api.Data;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Loan_Buddy_Api.Controllers
 {

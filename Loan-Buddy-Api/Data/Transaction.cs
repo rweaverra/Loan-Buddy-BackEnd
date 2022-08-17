@@ -33,7 +33,7 @@ namespace Loan_Buddy_Api.Data
         public int LoanAgreementId { get; set; }
 
         //Reference property. It doesn't add any columns it just references this table
-        public LoanAgreement LoanAgreement { get; set; }
+        //public LoanAgreement LoanAgreement { get; set; }
 
 
     }
