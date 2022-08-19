@@ -1,4 +1,6 @@
 ﻿using Loan_Buddy_Api.Data;
+using Loan_Buddy_Api.Services;
+using Loan_Buddy_Api.Services.UserService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,29 +12,25 @@ namespace Loan_Buddy_Api.Controllers
     public class UserController : ControllerBase
 
     {
-        private AppDBContext _db = new AppDBContext();
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
+        {          
+            _userService = userService;
+        }
 
         [HttpGet("GetUsers")]
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<ServiceResponse<IEnumerable<User>>> GetUsers()
 
         {
-            return await _db.Users.ToListAsync();
+            return await _userService.GetUsers();
         }
 
         [HttpGet("{userId}")]
-        public async Task<User> GetUser(int userId)
+        public async Task<ServiceResponse<User>> GetUser(int userId)
 
-        {                     
-            return await _db.Users.SingleOrDefaultAsync(r => r.UserId == userId);
-        }
-
-
-
-        [HttpGet]
-        public string Get()
         {
-            return "Joe Turner, turn into JSON object eventually";
+            return await _userService.GetUser(userId);
         }
-
     }
 }

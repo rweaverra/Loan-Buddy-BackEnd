@@ -1,6 +1,7 @@
 ﻿using Loan_Buddy_Api.Data;
+using Loan_Buddy_Api.Services;
+using Loan_Buddy_Api.Services.TransactionService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Loan_Buddy_Api.Controllers
 {
@@ -8,40 +9,23 @@ namespace Loan_Buddy_Api.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private readonly AppDBContext _db = new AppDBContext();
-
-
-
-        [HttpGet("{loanId}")]
-        public async Task <IEnumerable<Transaction>> GetLoanTransactions(int loanId)
-
+        private readonly ITransactionService _transactionService;
+        public TransactionController(ITransactionService transactionService)
         {
-            var query = await _db.Transactions.Where(r => r.LoanAgreementId == loanId).ToListAsync();
-
-            return query;      
+            _transactionService = transactionService;
         }
 
-        [HttpPost("{transaction}")]
-        public async Task <Transaction> PostTransaction(Transaction transaction)
+        [HttpGet("{loanId}")]
+        public async Task<ServiceResponse<IEnumerable<Transaction>>> GetLoanTransactions(int loanId)
+
         {
-            transaction.Date = DateTime.Now;
+            return await _transactionService.GetLoanTransactions(loanId);    
+        }
 
-            //calculate remaining total by grabbing the loan agreement
-            var loanAmountRemaning = _db.LoanAgreements.Where(r => r.LoanAgreementId == transaction.LoanAgreementId)
-                .Select(c => c.RemainingTotal)
-                .FirstOrDefault();
-
-           loanAmountRemaning = loanAmountRemaning - transaction.Amount;
-
-           var loanAgreement = _db.LoanAgreements.Find(transaction.LoanAgreementId);
-            loanAgreement.RemainingTotal = loanAmountRemaning;
-
-            transaction.RemainingTotal = loanAmountRemaning;
-
-            _db.Transactions.Add(transaction);
-            await _db.SaveChangesAsync();
-
-            return transaction;
+        [HttpPost("postTransaction")]
+        public async Task <ServiceResponse<Transaction>> PostTransaction([FromBody] Transaction transaction)
+        {
+            return await _transactionService.PostTransaction(transaction);       
         }
     }
 }

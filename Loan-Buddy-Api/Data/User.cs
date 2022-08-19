@@ -16,10 +16,7 @@ namespace Loan_Buddy_Api.Data
         [MaxLength(200)]
         public string Email { get; set; } = string.Empty;
 
-        [MaxLength(200)]
         public string Password { get; set; } = string.Empty;
 
-
- 
     }
 }

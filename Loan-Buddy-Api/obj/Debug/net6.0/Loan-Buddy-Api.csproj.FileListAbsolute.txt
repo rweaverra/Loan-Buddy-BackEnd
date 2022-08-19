@@ -234,3 +234,4 @@ C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\n
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -27,8 +27,8 @@ namespace Loan_Buddy_Api.Data
         {
 
             modelBuilder.Entity<User>().HasData(
-                new User { UserId = 1, Name = "Bill", Email = "bill@gmail.com", Password = "password" },
-                new User() { UserId = 2, Name = "Janet", Email = "Janet@gmail.com", Password = "password" });
+                new User { UserId = 1, Name = "Bill", Email = "bill@gmail.com", Password = "123" },
+                new User() { UserId = 2, Name = "Janet", Email = "Janet@gmail.com", Password = "123" });
 
             modelBuilder.Entity<LoanAgreement>().HasData(
                 new LoanAgreement()
