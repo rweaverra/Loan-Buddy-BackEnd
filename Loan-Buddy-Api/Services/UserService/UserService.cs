@@ -1,4 +1,6 @@
-﻿using Loan_Buddy_Api.Data;
+﻿using AutoMapper;
+using Loan_Buddy_Api.Data;
+using Loan_Buddy_Api.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace Loan_Buddy_Api.Services.UserService
@@ -6,12 +8,17 @@ namespace Loan_Buddy_Api.Services.UserService
     public class UserService : IUserService
     {
         private readonly AppDBContext _db = new AppDBContext();
-     
-        public async Task<ServiceResponse<User>> GetUser(int userId)
+        private readonly IMapper _mapper;
+
+        public UserService(IMapper mapper)
         {
-            var serviceResponse = new ServiceResponse<User>();
+            _mapper = mapper;
+        }
+        public async Task<ServiceResponse<UserDto>> GetUser(int userId)
+        {
+            var serviceResponse = new ServiceResponse<UserDto>();
             var user = await _db.Users.SingleOrDefaultAsync(r => r.UserId == userId);
-            serviceResponse.Data = user;
+            serviceResponse.Data = _mapper.Map<UserDto>(user);
 
             return serviceResponse;
         }

@@ -1,4 +1,5 @@
 ﻿using Loan_Buddy_Api.Data;
+using Loan_Buddy_Api.DTOs;
 using Loan_Buddy_Api.Services;
 using Loan_Buddy_Api.Services.UserService;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +28,7 @@ namespace Loan_Buddy_Api.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<ServiceResponse<User>> GetUser(int userId)
+        public async Task<ServiceResponse<UserDto>> GetUser(int userId)
 
         {
             return await _userService.GetUser(userId);

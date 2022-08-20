@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Qvwt7ITt9gK3Jk9UBFD+NPfPF6kTgU7xrlJUtTUnAPXG0Fj6WPfIP4d1N+E3ozhuhQJO6MxrW0h2kMCsWBy5Bw==",
+  "dgSpecHash": "4I0FC+NU8Q9tDBuRLxSgEKZIEoydP9oEyymD6ZEAFpMA8KPCuk6RfUxt+0VI/0RLg7JZ+n2ChZHQ7wo6TV6uYg==",
   "success": true,
   "projectFilePath": "C:\\Users\\rweav\\source\\repos\\GitHub\\Loan-Buddy-BackEnd\\Loan-Buddy-Api\\Loan-Buddy-Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\rweav\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\rweav\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\rweav\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\rweav\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.4\\microsoft.aspnetcore.authentication.jwtbearer.6.0.4.nupkg.sha512",
-    "C:\\Users\\rweav\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\rweav\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\rweav\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\rweav\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\rweav\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.4\\microsoft.entityframeworkcore.6.0.4.nupkg.sha512",
