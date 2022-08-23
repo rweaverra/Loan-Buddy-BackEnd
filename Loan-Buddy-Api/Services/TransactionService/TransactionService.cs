@@ -5,7 +5,11 @@ namespace Loan_Buddy_Api.Services.TransactionService
 {
     public class TransactionService : ITransactionService
     {
-        private readonly AppDBContext _db = new AppDBContext();
+        private readonly AppDBContext _db;
+        public TransactionService(AppDBContext context)
+        {
+            _db = context;
+        }
         public async Task<ServiceResponse<IEnumerable<Transaction>>> GetLoanTransactions(int loanId)
         {
             var serviceResponse = new ServiceResponse<IEnumerable<Transaction>>();

@@ -6,7 +6,11 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
 {
     public class LoanAgreementService : ILoanAgreementService
     {
-        private AppDBContext _db = new AppDBContext();
+        private readonly AppDBContext _db;
+       public LoanAgreementService(AppDBContext context)
+        {
+            _db = context;
+        }
         public async Task<ServiceResponse<LoanAgreement>> GetAllLoanInfoWithLoanId(int loanId)
         {
             var serviceResponse = new ServiceResponse<LoanAgreement>();

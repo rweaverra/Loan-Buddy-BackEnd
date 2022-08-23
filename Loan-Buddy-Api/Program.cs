@@ -3,6 +3,7 @@ using Loan_Buddy_Api.Data;
 using Loan_Buddy_Api.Services.LoanAgreementService;
 using Loan_Buddy_Api.Services.TransactionService;
 using Loan_Buddy_Api.Services.UserService;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,9 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
+
+builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

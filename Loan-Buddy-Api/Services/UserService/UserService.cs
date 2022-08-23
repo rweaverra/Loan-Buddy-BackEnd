@@ -7,12 +7,13 @@ namespace Loan_Buddy_Api.Services.UserService
 {
     public class UserService : IUserService
     {
-        private readonly AppDBContext _db = new AppDBContext();
+        private readonly AppDBContext _db;
         private readonly IMapper _mapper;
 
-        public UserService(IMapper mapper)
+        public UserService(IMapper mapper, AppDBContext context)
         {
             _mapper = mapper;
+            _db = context;
         }
         public async Task<ServiceResponse<UserDto>> GetUser(int userId)
         {

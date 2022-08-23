@@ -8,7 +8,12 @@ namespace Loan_Buddy_Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private AppDBContext _db = new AppDBContext();
+        private readonly AppDBContext _db;
+  
+        public AuthController(AppDBContext context)
+        {
+            _db = context;
+        }
 
         [HttpGet()]
         public async Task<ActionResult> Login(string username, string password)

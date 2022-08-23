@@ -237,3 +237,7 @@ C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\n
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\PuppeteerSharp.dll
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll

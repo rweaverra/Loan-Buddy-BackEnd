@@ -11,6 +11,7 @@ namespace Loan_Buddy_Api.Data
         public DateTime DateCreated { get; set; }
         public int MonthlyPaymentAmount { get; set; }
         public int RemainingTotal { get; set; }
+        public bool RequiresSignatures { get; set; } = false;
         public bool SignedByBorrower { get; set; } = false;
         public bool SignedByLender { get; set; } = false;
 

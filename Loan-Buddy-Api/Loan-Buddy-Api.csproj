@@ -27,7 +27,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="PuppeteerSharp" Version="7.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\LoanAgreementPDFs\" />
   </ItemGroup>
 
 </Project>
