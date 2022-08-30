@@ -1,5 +1,4 @@
-﻿using Loan_Buddy_Api.Data;
-using Loan_Buddy_Api.Services;
+﻿using Loan_Buddy_Api.Models;
 using Loan_Buddy_Api.Services.TransactionService;
 using Microsoft.AspNetCore.Mvc;
 

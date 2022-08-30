@@ -1,4 +1,5 @@
 ﻿using Loan_Buddy_Api.Data;
+using Loan_Buddy_Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Loan_Buddy_Api.Services.TransactionService
@@ -37,7 +38,7 @@ namespace Loan_Buddy_Api.Services.TransactionService
             var loanAgreement = await _db.LoanAgreements.FindAsync(transaction.LoanAgreementId);
             loanAgreement.RemainingTotal = loanAmountRemaning;
 
-            transaction.RemainingTotal = loanAmountRemaning;
+            transaction.RemainingTotal = (int)loanAmountRemaning;
 
             _db.Transactions.Add(transaction);
             await _db.SaveChangesAsync();

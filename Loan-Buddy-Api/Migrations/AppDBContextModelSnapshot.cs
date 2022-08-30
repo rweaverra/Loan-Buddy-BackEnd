@@ -22,7 +22,7 @@ namespace Loan_Buddy_Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Loan_Buddy_Api.Data.LoanAgreement", b =>
+            modelBuilder.Entity("Loan_Buddy_Api.Models.LoanAgreement", b =>
                 {
                     b.Property<int>("LoanAgreementId")
                         .ValueGeneratedOnAdd()
@@ -33,19 +33,19 @@ namespace Loan_Buddy_Api.Migrations
                     b.Property<int?>("BorrowerId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("LenderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MonthlyPaymentAmount")
+                    b.Property<int?>("MonthlyPaymentAmount")
                         .HasColumnType("int");
 
-                    b.Property<int>("OriginalAmount")
+                    b.Property<int?>("OriginalAmount")
                         .HasColumnType("int");
 
-                    b.Property<int>("RemainingTotal")
+                    b.Property<int?>("RemainingTotal")
                         .HasColumnType("int");
 
                     b.Property<bool>("RequiresSignatures")
@@ -70,7 +70,7 @@ namespace Loan_Buddy_Api.Migrations
                         {
                             LoanAgreementId = 1,
                             BorrowerId = 1,
-                            DateCreated = new DateTime(2022, 8, 22, 15, 22, 46, 830, DateTimeKind.Local).AddTicks(9439),
+                            DateCreated = new DateTime(2022, 8, 23, 17, 8, 5, 971, DateTimeKind.Local).AddTicks(8705),
                             LenderId = 2,
                             MonthlyPaymentAmount = 240,
                             OriginalAmount = 24242,
@@ -81,7 +81,7 @@ namespace Loan_Buddy_Api.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Loan_Buddy_Api.Data.Transaction", b =>
+            modelBuilder.Entity("Loan_Buddy_Api.Models.Transaction", b =>
                 {
                     b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd()
@@ -120,7 +120,7 @@ namespace Loan_Buddy_Api.Migrations
                         {
                             TransactionId = 1,
                             Amount = 55,
-                            Date = new DateTime(2022, 8, 22, 15, 22, 46, 830, DateTimeKind.Local).AddTicks(9599),
+                            Date = new DateTime(2022, 8, 23, 17, 8, 5, 971, DateTimeKind.Local).AddTicks(8752),
                             LoanAgreementId = 1,
                             ProofOfPayment = false,
                             RemainingTotal = 2324,
@@ -128,7 +128,7 @@ namespace Loan_Buddy_Api.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Loan_Buddy_Api.Data.User", b =>
+            modelBuilder.Entity("Loan_Buddy_Api.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -171,13 +171,13 @@ namespace Loan_Buddy_Api.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Loan_Buddy_Api.Data.LoanAgreement", b =>
+            modelBuilder.Entity("Loan_Buddy_Api.Models.LoanAgreement", b =>
                 {
-                    b.HasOne("Loan_Buddy_Api.Data.User", "BorrowerDetail")
+                    b.HasOne("Loan_Buddy_Api.Models.User", "BorrowerDetail")
                         .WithMany()
                         .HasForeignKey("BorrowerId");
 
-                    b.HasOne("Loan_Buddy_Api.Data.User", "LenderDetail")
+                    b.HasOne("Loan_Buddy_Api.Models.User", "LenderDetail")
                         .WithMany()
                         .HasForeignKey("LenderId");
 
@@ -186,16 +186,16 @@ namespace Loan_Buddy_Api.Migrations
                     b.Navigation("LenderDetail");
                 });
 
-            modelBuilder.Entity("Loan_Buddy_Api.Data.Transaction", b =>
+            modelBuilder.Entity("Loan_Buddy_Api.Models.Transaction", b =>
                 {
-                    b.HasOne("Loan_Buddy_Api.Data.LoanAgreement", null)
+                    b.HasOne("Loan_Buddy_Api.Models.LoanAgreement", null)
                         .WithMany("Transactions")
                         .HasForeignKey("LoanAgreementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Loan_Buddy_Api.Data.LoanAgreement", b =>
+            modelBuilder.Entity("Loan_Buddy_Api.Models.LoanAgreement", b =>
                 {
                     b.Navigation("Transactions");
                 });

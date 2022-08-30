@@ -1,4 +1,5 @@
 ﻿using Loan_Buddy_Api.Data;
+using Loan_Buddy_Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

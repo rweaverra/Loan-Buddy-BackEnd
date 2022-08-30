@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 
-namespace Loan_Buddy_Api.Data
+namespace Loan_Buddy_Api.Models
 {
     public enum TransactionType
     {

@@ -1,11 +1,13 @@
 using Loan_Buddy_Api;
 using Loan_Buddy_Api.Data;
+using Loan_Buddy_Api.Models;
 using Loan_Buddy_Api.Services.LoanAgreementService;
 using Loan_Buddy_Api.Services.TransactionService;
 using Loan_Buddy_Api.Services.UserService;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.AddCors(options =>
 {
@@ -35,7 +37,7 @@ builder.Services.AddScoped<ITransactionService, TransactionService>();
 var app = builder.Build();
 app.UseCors("MyAllowedOrigins");
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

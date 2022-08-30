@@ -1,4 +1,4 @@
-﻿namespace Loan_Buddy_Api.Services
+﻿namespace Loan_Buddy_Api.Models
 {
     public class ServiceResponse<T>
     {

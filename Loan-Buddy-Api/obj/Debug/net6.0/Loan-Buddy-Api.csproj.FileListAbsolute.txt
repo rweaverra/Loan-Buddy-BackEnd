@@ -241,3 +241,6 @@ C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\n
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\PuppeteerSharp.dll
 C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\MailKit.dll
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\MimeKit.dll
+C:\Users\rweav\source\repos\GitHub\Loan-Buddy-BackEnd\Loan-Buddy-Api\bin\Debug\net6.0\BouncyCastle.Crypto.dll

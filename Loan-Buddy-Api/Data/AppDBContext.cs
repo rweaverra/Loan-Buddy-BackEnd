@@ -1,5 +1,6 @@
 ﻿//using System.Data.Entity;
 
+using Loan_Buddy_Api.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;

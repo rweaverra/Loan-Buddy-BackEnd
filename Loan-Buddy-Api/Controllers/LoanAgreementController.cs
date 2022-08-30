@@ -1,11 +1,17 @@
-﻿using Loan_Buddy_Api.Data;
-using Loan_Buddy_Api.Services;
+﻿
+using Loan_Buddy_Api.Models;
 using Loan_Buddy_Api.Services.LoanAgreementService;
+using MailKit.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
-using PuppeteerSharp;
+using MimeKit.Text;
+using MimeKit;
+using PuppeteerSharp; //remove
 using System.IO;
+using System.Text.Json.Nodes;
+using MailKit.Net.Smtp;
+using Org.BouncyCastle.Crypto.Agreement;
+using Microsoft.Extensions.Configuration;
 
 namespace Loan_Buddy_Api.Controllers
 {
@@ -14,10 +20,12 @@ namespace Loan_Buddy_Api.Controllers
     public class LoanAgreementController : ControllerBase
     {
         private readonly ILoanAgreementService _loanAgreementService;
+        private readonly IConfiguration _configuration;
 
-        public LoanAgreementController(ILoanAgreementService loanAgreementService)
+        public LoanAgreementController(ILoanAgreementService loanAgreementService, IConfiguration configuration)
         {
-           _loanAgreementService = loanAgreementService;
+            _loanAgreementService = loanAgreementService;
+            _configuration = configuration;
         }
 
 
@@ -31,7 +39,7 @@ namespace Loan_Buddy_Api.Controllers
             var html = System.IO.File.ReadAllText("./Controllers/invoice.html");
             string path = "./Controllers/invoice1.pdf";
 
-        var pdfOptions = new PuppeteerSharp.PdfOptions();
+            var pdfOptions = new PuppeteerSharp.PdfOptions();
 
             using (var browser = await Puppeteer.LaunchAsync(new LaunchOptions
             {
@@ -46,7 +54,7 @@ namespace Loan_Buddy_Api.Controllers
                     await page.PdfAsync(path, pdfOptions);
                 }
             }
-        
+
             return serviceResponse;
         }
 
@@ -55,92 +63,80 @@ namespace Loan_Buddy_Api.Controllers
 
         [HttpGet("/loanAgreementsGet/{userId}")]
         public async Task<ServiceResponse<Dictionary<string, object>>> GetLoanAgreements(int userId)
-        {               
+        {
             return await _loanAgreementService.GetLoanAgreements(userId);
         }
 
         [HttpGet("getAllLoanInfo/{loanId}")]
-        public async Task<ServiceResponse<LoanAgreement>> GetAllLoanInfoWithLoanId(int loanId)
+        public async Task<ServiceResponse<Dictionary<string, object>>> GetAllLoanInfoWithLoanId(int loanId)
         {
-  
+
             return await _loanAgreementService.GetAllLoanInfoWithLoanId(loanId);
         }
-  
-        [HttpPost("LoanAgreementCreate")]
-        public async Task<ActionResult<object>> LoanAgreementCreate([FromBody] string value)
-            //dont forget to move to IAUTHSERVICE
+
+        [HttpGet("sendSignedPDF")]
+        public async Task<object> SendSignedPDF()
         {
-            try
-            {
-               
+            // create email message
+            //var email = new MimeMessage();
+            //email.From.Add(MailboxAddress.Parse("rweaverra@gmail.com"));
+            //email.To.Add(MailboxAddress.Parse("rweaverra@gmail.com"));
+            //email.Subject = "Test Email Subject";
+            //email.Body = new TextPart(TextFormat.Plain) { Text = "Example Plain Text Message Body" };
 
-                return Ok(value);
-            }
-            catch(Exception err)
-            {
-                return BadRequest("loan agreement was not added" + err);
-            }
+       
 
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("loanBuddy", "loanbuddyemail@gmail.com"));
+            message.To.Add(new MailboxAddress("Alice", "rweaverra@gmail.com"));
+            message.Subject = "How you doin?";
+
+            var builder = new BodyBuilder();
+
+            // Set the plain-text version of the message text
+            builder.TextBody = @"Hey Alice,
+
+                    What are you up to this weekend? Monica is throwing one of her parties on
+                    Saturday and I was hoping you could make it.
+
+                    Will you be my +1?
+
+                    -- Joey
+                    ";
+
+            // We may also want to attach a calendar event for Monica's party...
+            builder.Attachments.Add(@"./Data/LoanAgreementPDFs/19.pdf");
+
+            // Now we just need to set the message body and we're done
+            message.Body = builder.ToMessageBody();
+
+
+            // send email
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("loanbuddyemail@gmail.com", "mawuivdpasfsopzg");
+            smtp.Send(message);
+            smtp.Disconnect(true);
+
+
+
+
+            return "email sent";
         }
 
-        [HttpPost("SubmitFinishedLoanAgreement")]
-        public async Task<ActionResult<ServiceResponse<object>>> SubmitFinishedLoanAgreement([FromBody] object data)
-   
+        //SubmitSecondSigLoanAgreement
+        [HttpPost("SubmitSecondSigLoanAgreement")]
+        public async Task<ActionResult<ServiceResponse<object>>> SubmitSecondSigLoanAgreement(JsonObject data)
         {
-            try
-            {
-                var serviceResponse = new ServiceResponse<object>();
+            return Ok(await _loanAgreementService.SubmitSecondSigLoanAgreement(data));
+        }
 
-                
-                /*need to make a class with LoanAgreement, string, User
-                 * then use this class to map all the returning data. 
-                 *      how to map if not providing an id?(look at other project)
-                 * add loan agreements to database
-                 * add new user to User table and create a temp password
-                 * add pdf file to LoanAgreementPDFs
-                 * send an email with the PDF
-                */
-                JObject json = JObject.Parse(data.ToString());
-
-                //add agreement to database and get the new aggreement id
-                //save the pdf as the agreement Id
-
-
-
-
-
-                //pdf saving
-                if (json["data"].ToString() is not null && json["data"]["pdfBase64String"] is not null)
-                {
-                    string pdfString = json["data"]["pdfBase64String"].ToString();
-
-                    //have to remove extra characters "data:application/pdf;base64, which were added when the pdf was saved on front end
-                    //string result = pdfString.Remove(0, 29);
-                    //result = result.Remove(result.Length - 1);                                  
-                    byte[] sPDFDecoded = Convert.FromBase64String(pdfString);
-                    System.IO.File.WriteAllBytes($"./Data/LoanAgreementPDFs/signedPDF.pdf", sPDFDecoded);
-
-
-                    serviceResponse.Data = pdfString;
-                    return Ok(serviceResponse);
-
-                }
-
-
-
-
-                return Ok(json);
-
-
-                //System.IO.File.WriteAllBytes("./submitedpdf", GetBytes(value["formData"]));
-
-
-            }
-            catch (Exception err)
-            {
-                return BadRequest("loan agreement was not added" + err);
-            }
-
+          [HttpPost("SubmitNewLoanAgreement")]
+        public async Task<ActionResult<ServiceResponse<object>>> SubmitNewLoanAgreement(JsonObject data)
+   
+        {              
+               return  Ok( await _loanAgreementService.SubmitNewLoanAgreement(data));
+     
         }
 
         
