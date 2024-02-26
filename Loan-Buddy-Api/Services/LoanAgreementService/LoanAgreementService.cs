@@ -41,8 +41,7 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
 
 
                 string pdfBase64String = GetPdf(loanId);
-                //if (loanAgreement is null)
-                //    return BadRequest("No loan Agreement with that Id");
+
                 result.Add("pdfBase64String", pdfBase64String);
                 result.Add("loanAgreement", loanAgreement);
             
@@ -71,8 +70,6 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
                 .Include(l => l.LenderDetail)
                 .Where(r => r.LenderId == userId || r.BorrowerId == userId).ToListAsync();
 
-            //if (user == null || loanAgreements == null)
-            //    return "error retreiving loan agreements";
 
             results.Add("userInfo", user);
             results.Add("loanAgreements", loanAgreements);
@@ -143,6 +140,8 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
                 loanAgreement.BorrowerId = newUser.UserId;
             }
 
+            loanAgreement.RemainingTotal = loanAgreement.OriginalAmount;
+
             _db.LoanAgreements.Add(loanAgreement);
              await _db.SaveChangesAsync();
 
@@ -155,7 +154,7 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
             // send an email to user's email to log in.
             emailOtherUserLink(newUser, userInfo);
 
-            serviceResponse.Data = newUser;
+            serviceResponse.Data = loanAgreement;
 
             return serviceResponse;
         }
@@ -202,11 +201,11 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
                     return serviceResponse;
                 }
 
-                await updateLoanToIncludeSignedBy(loanAgreement, typeOfLoan);
+                await UpdateLoanToIncludeSignedBy(loanAgreement, typeOfLoan);
               
-                await saveBase64StringAsPdfFile(loanAgreement.LoanAgreementId, pdfBase64String);
+                await SaveBase64StringAsPdfFile(loanAgreement.LoanAgreementId, pdfBase64String);
 
-                var wasEmailed = emailCompletedPdfToBothUsers(loanAgreement.BorrowerDetail, loanAgreement.LenderDetail, loanAgreement.LoanAgreementId);
+                var wasEmailed = EmailCompletedPdfToBothUsers(loanAgreement.BorrowerDetail, loanAgreement.LenderDetail, loanAgreement.LoanAgreementId);
 
                 //get both users emails
 
@@ -220,14 +219,14 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
             return serviceResponse;
         }
 
-        public async Task saveBase64StringAsPdfFile(int id, string pdfBase64String)
+        public async Task SaveBase64StringAsPdfFile(int id, string pdfBase64String)
         {
             
             byte[] sPDFDecoded = Convert.FromBase64String(pdfBase64String);
             await System.IO.File.WriteAllBytesAsync($"./Data/LoanAgreementPDFs/{id}.pdf", sPDFDecoded);
         }
 
-        public async Task updateLoanToIncludeSignedBy(LoanAgreement loanAgreement, string typeOfLoan)
+        public async Task UpdateLoanToIncludeSignedBy(LoanAgreement loanAgreement, string typeOfLoan)
         {
             var updatedLoan = await _db.LoanAgreements
                     .Where(l => l.LoanAgreementId == loanAgreement.LoanAgreementId)
@@ -238,8 +237,8 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
 
             await _db.SaveChangesAsync();
         }
-
-        public string emailCompletedPdfToBothUsers(User firstSigner, User secondSigner, int loanId)
+        
+        public string EmailCompletedPdfToBothUsers(User firstSigner, User secondSigner, int loanId)
         {
             try
             {
@@ -278,5 +277,73 @@ namespace Loan_Buddy_Api.Services.LoanAgreementService
                 return err.Message;
             }
         }
+
+        public async Task<ServiceResponse<Dictionary<string, object>>> SubmitPreviousTransactionsCSV(IFormFile file, string loanId)
+        {
+            var serviceResponse = new ServiceResponse<Dictionary<string, object>>();
+            var result = new Dictionary<string, object>();
+
+            try
+            {
+
+
+
+                if (file != null && file.Length > 0)
+                {
+                    //calculate remaining total by grabbing the loan agreement
+                    var loanAmountRemaning = await _db.LoanAgreements
+                        .Where(r => r.LoanAgreementId.ToString() == loanId)
+                        .Select(c => c.RemainingTotal)
+                        .FirstOrDefaultAsync();
+
+                    using (var reader = new StreamReader(file.OpenReadStream()))
+                    {
+                        string? headerLine = reader.ReadLine(); //skip the header line
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                                var row = reader.ReadLine();
+                                var separatedRow = row.Split(',');
+                                // see how transactions are saved
+                                var transaction = new Transaction();
+                                transaction.Amount = Decimal.Parse(separatedRow[0]);
+                                transaction.Date = DateTime.Parse(separatedRow[1]);
+                                transaction.LoanAgreementId = Int32.Parse(loanId);
+                                transaction.TransactionType = "Upload from csv file";
+
+                                loanAmountRemaning -= transaction.Amount;
+
+                                transaction.RemainingTotal = loanAmountRemaning;
+
+                                _db.Transactions.Add(transaction);
+                        }
+                    }
+
+                    //get current loan agreement and update it.
+                    var loanAgreement = await _db.LoanAgreements
+                   .Where(l => l.LoanAgreementId == Int32.Parse(loanId))
+                   .SingleOrDefaultAsync();
+
+                    loanAgreement.RemainingTotal = loanAmountRemaning;
+
+                    
+                    await _db.SaveChangesAsync();
+
+                    //check and see if they were added to the database
+
+                    serviceResponse.Message = "RW TEsting it worked";
+                    serviceResponse.Data = result;
+                }
+            }
+            catch (Exception err)
+            {
+                result.Add("error", err);
+                serviceResponse.Data = result;
+                serviceResponse.Success = false;
+            }
+           
+            return serviceResponse;
+        }
+        
     }
 }
