@@ -4,6 +4,7 @@ using Loan_Buddy_Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_Buddy_Api.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220908185900_passworddbstuff")]
+    partial class passworddbstuff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,7 +76,7 @@ namespace Loan_Buddy_Api.Migrations
                         {
                             LoanAgreementId = 1,
                             BorrowerId = 1,
-                            DateCreated = new DateTime(2024, 2, 24, 14, 21, 37, 162, DateTimeKind.Local).AddTicks(7242),
+                            DateCreated = new DateTime(2022, 9, 8, 12, 58, 59, 666, DateTimeKind.Local).AddTicks(3025),
                             LenderId = 2,
                             LoanCreator = "",
                             MonthlyPaymentAmount = 240m,
@@ -94,8 +96,8 @@ namespace Loan_Buddy_Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"), 1L, 1);
 
-                    b.Property<decimal?>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int?>("Amount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
@@ -129,8 +131,8 @@ namespace Loan_Buddy_Api.Migrations
                         new
                         {
                             TransactionId = 1,
-                            Amount = 55m,
-                            Date = new DateTime(2024, 2, 24, 14, 21, 37, 162, DateTimeKind.Local).AddTicks(7382),
+                            Amount = 55,
+                            Date = new DateTime(2022, 9, 8, 12, 58, 59, 666, DateTimeKind.Local).AddTicks(3087),
                             LoanAgreementId = 1,
                             RemainingTotal = 2324m,
                             RequiresProofOfPayment = false,

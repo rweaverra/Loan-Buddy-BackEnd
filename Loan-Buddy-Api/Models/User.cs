@@ -18,5 +18,8 @@ namespace Loan_Buddy_Api.Models
 
         public string Password { get; set; } = string.Empty;
 
+        public string PasswordHash { get; set; } = string.Empty;
+        public string PasswordSalt { get; set; } = string.Empty;
+
     }
 }

@@ -33,7 +33,7 @@ namespace Loan_Buddy_Api.Migrations
                     OriginalAmount = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MonthlyPaymentAmount = table.Column<int>(type: "int", nullable: false),
-                    RemainingTotal = table.Column<int>(type: "int", nullable: false),
+                    RemainingTotal = table.Column<double>(type: "double", nullable: false),
                     SignedByBorrower = table.Column<bool>(type: "bit", nullable: false),
                     SignedByLender = table.Column<bool>(type: "bit", nullable: false),
                     BorrowerId = table.Column<int>(type: "int", nullable: true),

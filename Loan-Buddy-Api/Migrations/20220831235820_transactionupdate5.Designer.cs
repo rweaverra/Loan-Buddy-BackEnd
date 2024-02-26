@@ -4,6 +4,7 @@ using Loan_Buddy_Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_Buddy_Api.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220831235820_transactionupdate5")]
+    partial class transactionupdate5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,10 +40,6 @@ namespace Loan_Buddy_Api.Migrations
 
                     b.Property<int?>("LenderId")
                         .HasColumnType("int");
-
-                    b.Property<string>("LoanCreator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("MonthlyPaymentAmount")
                         .HasColumnType("decimal(18,2)");
@@ -74,9 +72,8 @@ namespace Loan_Buddy_Api.Migrations
                         {
                             LoanAgreementId = 1,
                             BorrowerId = 1,
-                            DateCreated = new DateTime(2024, 2, 24, 14, 21, 37, 162, DateTimeKind.Local).AddTicks(7242),
+                            DateCreated = new DateTime(2022, 8, 31, 17, 58, 20, 202, DateTimeKind.Local).AddTicks(6270),
                             LenderId = 2,
-                            LoanCreator = "",
                             MonthlyPaymentAmount = 240m,
                             OriginalAmount = 24242m,
                             RemainingTotal = 2424m,
@@ -94,8 +91,8 @@ namespace Loan_Buddy_Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"), 1L, 1);
 
-                    b.Property<decimal?>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int?>("Amount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
@@ -106,8 +103,8 @@ namespace Loan_Buddy_Api.Migrations
                     b.Property<int?>("ProofOfPaymentId")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("RemainingTotal")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int?>("RemainingTotal")
+                        .HasColumnType("int");
 
                     b.Property<bool?>("RequiresProofOfPayment")
                         .HasColumnType("bit");
@@ -129,10 +126,10 @@ namespace Loan_Buddy_Api.Migrations
                         new
                         {
                             TransactionId = 1,
-                            Amount = 55m,
-                            Date = new DateTime(2024, 2, 24, 14, 21, 37, 162, DateTimeKind.Local).AddTicks(7382),
+                            Amount = 55,
+                            Date = new DateTime(2022, 8, 31, 17, 58, 20, 202, DateTimeKind.Local).AddTicks(6328),
                             LoanAgreementId = 1,
-                            RemainingTotal = 2324m,
+                            RemainingTotal = 2324,
                             RequiresProofOfPayment = false,
                             TransactionType = "Cash"
                         });
@@ -160,14 +157,6 @@ namespace Loan_Buddy_Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
@@ -178,18 +167,14 @@ namespace Loan_Buddy_Api.Migrations
                             UserId = 1,
                             Email = "bill@gmail.com",
                             Name = "Bill",
-                            Password = "123",
-                            PasswordHash = "",
-                            PasswordSalt = ""
+                            Password = "123"
                         },
                         new
                         {
                             UserId = 2,
                             Email = "Janet@gmail.com",
                             Name = "Janet",
-                            Password = "123",
-                            PasswordHash = "",
-                            PasswordSalt = ""
+                            Password = "123"
                         });
                 });
 

@@ -1,9 +1,11 @@
 ﻿using Loan_Buddy_Api.Models;
 using Loan_Buddy_Api.Services.TransactionService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Loan_Buddy_Api.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class TransactionController : ControllerBase
@@ -21,7 +23,7 @@ namespace Loan_Buddy_Api.Controllers
             return await _transactionService.GetLoanTransactions(loanId);    
         }
 
-        [HttpPost("postTransaction")]
+        [HttpPost("PostTransaction")]
         public async Task <ServiceResponse<Transaction>> PostTransaction([FromBody] Transaction transaction)
         {
             return await _transactionService.PostTransaction(transaction);       

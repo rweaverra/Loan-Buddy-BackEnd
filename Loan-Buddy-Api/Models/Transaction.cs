@@ -4,36 +4,49 @@ using System.Diagnostics;
 
 namespace Loan_Buddy_Api.Models
 {
+
+    //should probably be added as db table
     public enum TransactionType
     {
         Cash,
         Check,
         BankWire,
-        ThirdPartyApp
+        ThirdPartyApp,
+        Other
+    }
+
+    //should probably be added as db table
+    public enum ThirdPartyApp
+    {
+        Venmo,
+        Zelle,
+        PayPal,
+        Other
     }
     public class Transaction
     {
         [Key]
         public int TransactionId { get; set; }
 
-        public int Amount { get; set; }
+        public decimal? Amount { get; set; }
 
         //Change payment type to foreign key
         [MaxLength(200)]
-        public string TransactionType { get; set; }
+        public string? TransactionType { get; set; }
 
-        public DateTime Date { get; set; }
+        public string? ThirdPartyApp { get; set; }
 
-        public int RemainingTotal { get; set; }
+        public DateTime? Date { get; set; }
 
-        public bool ProofOfPayment { get; set; }
+        public decimal? RemainingTotal { get; set; }
 
-        //Is the foreign Key, system looks for its name compared to its referenced entities and sees if it
-        //should be a foreign key. I think.
+        public bool? RequiresProofOfPayment { get; set; } = false;
+
+        //the image will be stored as a file with the id as the file name. 
+        public int? ProofOfPaymentId { get; set; }
+
         public int LoanAgreementId { get; set; }
 
-        //Reference property. It doesn't add any columns it just references this table
-        //public LoanAgreement LoanAgreement { get; set; }
 
 
     }

@@ -53,7 +53,7 @@ namespace Loan_Buddy_Api.Data
                     Date = System.DateTime.Now,
                     LoanAgreementId = 1,
                     TransactionType = TransactionType.Cash.ToString(),
-                    ProofOfPayment = false,
+                    RequiresProofOfPayment = false,
                     RemainingTotal = 2324
                 });
 
