@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Loan-Buddy-Api",
+    "\\Loan-Buddy-Api\\Services",
+    "\\Loan-Buddy-Api\\Services\\LoanAgreementService"
   ],
+  "SelectedNode": "\\Loan-Buddy-Api\\Services\\LoanAgreementService\\LoanAgreementService.cs",
   "PreviewInSolutionExplorer": false
 }

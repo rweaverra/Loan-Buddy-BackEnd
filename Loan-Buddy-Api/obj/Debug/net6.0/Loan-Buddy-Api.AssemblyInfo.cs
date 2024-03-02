@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Loan-Buddy-Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f204d7802e6c8934e679cf35079828e60302d113")]
 [assembly: System.Reflection.AssemblyProductAttribute("Loan-Buddy-Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Loan-Buddy-Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
